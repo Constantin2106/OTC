@@ -65,13 +65,14 @@ void __fastcall TForm1::SaveGridParamsButtonClick(TObject *Sender)
 void __fastcall TForm1::BuildGridButtonClick(TObject *Sender)
 {// Build grid
 	BuildGrid(GridChart, GetGridParameters());
+	CreateSpeedLimitSerie(GridChart, GetGridParameters());
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TForm1::GridChartClickSeries(TCustomChart *Sender, TChartSeries *Series,
 			int ValueIndex, TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-	SetSpeedLimitPoint(Series, X, Y, GetGridParameters());
+	AddSpeedLimitPoint(Series, GridPoint{X, Y}, GetGridParameters());
 }
 
 //---------------------------------------------------------------------------

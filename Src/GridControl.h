@@ -11,17 +11,22 @@ namespace SmartGrid
 	namespace GridControl
 	{
 		bool BuildGrid(TChart* gridChart, const Types::Parameters::GridParameters& gridParams);
-		void SetSpeedLimitPoint(TChartSeries* pickedSerie, int X, int Y, const Types::Parameters::GridParameters& gridParams);
 	}
 
 	namespace SeriesControl
 	{
+		// Serie pick/unpick control
 		void __fastcall PickSerie(TObject* Object);
 		void __fastcall UnPickSerie(TObject* Object);
-
 		bool IsPicked(const TChartSeries* serie);
 
-        void RemoveLastSpeedLimitPoint();
+		// Speed restriction seire control
+		void CreateSpeedLimitSerie(TChart* gridChart,
+			const Types::Parameters::GridParameters& gridParams);
+		void AddSpeedLimitPoint(TChartSeries* pickedSerie,
+			const Types::Parameters::GridPoint point,
+			const Types::Parameters::GridParameters& gridParams);
+		void RemoveLastSpeedLimitPoint();
 	}
 }
 
