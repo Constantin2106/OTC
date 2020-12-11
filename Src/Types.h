@@ -21,6 +21,12 @@ namespace SmartGrid::Types
 			int Vmax{};
 			int VStep{};
 		};
+
+		struct GridPoint
+		{
+			int X;
+			int Y;
+        };
 	}
 }
 //---------------------------------------------------------------------------
