@@ -22,6 +22,7 @@
 #include <Vcl.ComCtrls.hpp>
 
 #include "Src/GridControl.h"
+#include "Src/SeriesControl.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
