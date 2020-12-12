@@ -32,3 +32,4 @@ _ReSharper*/
 packages/
 __*
 Win64
+/SmartCard.cbproj.local
