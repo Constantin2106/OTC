@@ -21,8 +21,7 @@
 #include <Vcl.Bind.Editors.hpp>
 #include <Vcl.ComCtrls.hpp>
 
-#include "Src/GridControl.h"
-#include "Src/SeriesControl.h"
+#include "SmartCardPCH.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -70,6 +69,7 @@ private:	// User declarations
 	 SmartGrid::Types::Parameters::GridParameters mGridParameters;
 
 	 const SmartGrid::Types::Parameters::GridParameters& GetGridParameters();
+     SmartGrid::Types::Parameters::GridParameters& SetGridParameters();
 
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);

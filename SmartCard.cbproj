@@ -69,8 +69,8 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <IncludePath>Src\;Project-1\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Src\;Project-1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Src\Utils\;Src\;Project-1\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Src\Utils\;Src\;Project-1\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <SanitizedProjectName>SmartCard</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -157,6 +157,11 @@
             <DependentOn>Src\Types.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
+        <CppCompile Include="Src\Utils\DataControl.cpp">
+            <VirtualFolder>{3FB70FFD-0D4F-4C8A-9E0F-AAFB805F7888}</VirtualFolder>
+            <DependentOn>Src\Utils\DataControl.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
         <FormResources Include="MainUnit.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -186,12 +191,19 @@
                 </Source>
                 <Folders/>
                 <VFOLDERS>
-                    <VFOLDER ID="{E7C33917-40A9-4B18-BA49-03B8A0BC0AFC}" name="Src"/>
+                    <VFOLDER ID="{E7C33917-40A9-4B18-BA49-03B8A0BC0AFC}" name="Src">
+                        <VFOLDER ID="{3FB70FFD-0D4F-4C8A-9E0F-AAFB805F7888}" name="Utils"/>
+                    </VFOLDER>
                 </VFOLDERS>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="3">
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'!='true'" LocalName="$(BDS)\bin\cc32c260.dll" Class="DependencyModule">
                     <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgstl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -213,11 +225,6 @@
                 <DeployFile LocalName=".\Win64\Debug\SmartCard.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>SmartCard.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx64\libcgstl.dylib" Class="DependencyModule">
-                    <Platform Name="OSX64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

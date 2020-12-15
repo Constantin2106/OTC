@@ -7,10 +7,12 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-#pragma region Utilities to work with chart and series
-namespace
+#pragma region Grid control
+namespace SmartGrid::GridControl
 {
-	void SetAxis(TChartAxis* axis, int min, int max, int step)
+	using namespace SmartGrid::Types;
+
+	void SetAxisLabels(TChartAxis* axis, int min, int max, int step)
 	{
 		axis->Automatic = false;
 		axis->Minimum = 0;
@@ -21,13 +23,6 @@ namespace
 		axis->LabelsFont->Size = 10;
 		axis->LabelsFont->Style = axis->LabelsFont->Style << fsBold;
 	}
-}
-#pragma end_region
-
-#pragma region Grid control
-namespace SmartGrid::GridControl
-{
-	using namespace SmartGrid::Types;
 
 	bool BuildGrid(TChart* gridChart, const Parameters::GridParameters& gridParams)
 	{
@@ -36,8 +31,8 @@ namespace SmartGrid::GridControl
 		gridChart->SeriesList->Clear();
 
 		// Set axis range
-		SetAxis(gridChart->BottomAxis, 0, gridParams.Length, gridParams.Step);
-		SetAxis(gridChart->LeftAxis, 0, gridParams.Vmax, gridParams.VStep);
+		SetAxisLabels(gridChart->BottomAxis, 0, gridParams.Length, gridParams.Step);
+		SetAxisLabels(gridChart->LeftAxis, 0, gridParams.Vmax, gridParams.VStep);
 
 		// Add grid lines
 		for( int v = gridParams.Vmin; v <= gridParams.Vmax; v += gridParams.VStep )
