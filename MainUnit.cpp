@@ -4,6 +4,9 @@
 
 #include "MainUnit.h"
 
+#include "Src/GridControl.h"
+#include "Src/SeriesControl.h"
+#include "Src/Utils/DataControl.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -12,6 +15,7 @@ TForm1 *Form1;
 using namespace SmartGrid::Types::Parameters;
 using namespace SmartGrid::GridControl;
 using namespace SmartGrid::SeriesControl;
+using namespace SmartGrid::DataControl;
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -24,6 +28,11 @@ const GridParameters& TForm1::GetGridParameters()
 {
 	return mGridParameters = {SStepUpDown->Position, RLengthUpDown->Position,
 							  VminUpDown->Position, VmaxUpDown->Position, VStepUpDown->Position};
+}
+//---------------------------------------------------------------------------
+GridParameters& TForm1::SetGridParameters()
+{
+	return mGridParameters;
 }
 
 //---------------------------------------------------------------------------
@@ -53,12 +62,21 @@ void __fastcall TForm1::VStepUpDownChangingEx(TObject *Sender, bool &AllowChange
 //---------------------------------------------------------------------------
 void __fastcall TForm1::LoadGridParamsButtonClick(TObject *Sender)
 {// Load
+	auto success = ReadGridData("gridData.txt", SetGridParameters());
+	if(!success)
+		return;
 
+	SStepUpDown->Position = mGridParameters.Step;
+	RLengthUpDown->Position = mGridParameters.Length;
+
+	VStepUpDown->Position = mGridParameters.VStep;
+	VminUpDown->Position = mGridParameters.Vmin;
+	VmaxUpDown->Position = mGridParameters.Vmax;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::SaveGridParamsButtonClick(TObject *Sender)
 {// Save
-
+	auto success = WriteGridData(GetGridParameters(), "gridData.txt");
 }
 
 //---------------------------------------------------------------------------

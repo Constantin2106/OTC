@@ -4,7 +4,6 @@
 #define SeriesControlH
 
 #include "SmartCardPCH.h"
-#include "Types.h"
 
 namespace SmartGrid
 {

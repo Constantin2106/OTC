@@ -7,3 +7,5 @@
 #include <VCLTee.TeeProcs.hpp>
 #include <VCLTee.Series.hpp>
 
+#include "Types.h"
+
