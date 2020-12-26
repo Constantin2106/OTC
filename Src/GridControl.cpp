@@ -4,6 +4,7 @@
 
 #include "GridControl.h"
 #include "SeriesControl.h"
+#include "Utils/Utils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
